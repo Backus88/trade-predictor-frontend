@@ -12,7 +12,7 @@ export const HeaderStyle = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    border: 1px solid #0000FF;
+    border: 1px solid #5B84B9;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     h1{
