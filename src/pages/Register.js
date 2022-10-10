@@ -2,7 +2,7 @@ import { useContext, React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Container} from '../styledComponents/Container';  
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import UserContext from "../context/UserContext";
 import RegisterForm from '../components/RegisterForm';
 
@@ -35,7 +35,7 @@ export default function Register (){
             cpf:userData.cpf,
         };
         try{
-            const res = await axios.post("https://wallet-backend-driven.herokuapp.com/register",body);
+            const res = await api.post("register",body);
             const {token, name} = res.data;
             setToken(token);
             setName(name);
@@ -43,6 +43,7 @@ export default function Register (){
             navigate("/main");
         }catch(error){
             alert("cannot register");
+            console.log(error)
             setEnable(true);
             setUserData({...userData, email:'',
                 password:'',
@@ -62,7 +63,7 @@ export default function Register (){
             <RegisterForm enable={enable} handleSubmit={handleSubmit} setUserData={setUserData} userData ={userData} />
             <Link to={"/login"} style ={{textDecoration:'none'}}>
                 <h2>
-                    Already Register?Login!
+                    Already Registered?Login!
                 </h2>
             </Link>
         </Container>

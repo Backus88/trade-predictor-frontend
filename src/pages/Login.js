@@ -1,9 +1,10 @@
 import { useContext, React, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {Container} from '../styledComponents/Container';  
-import axios from 'axios';
 import UserContext from "../context/UserContext";
 import LoginForm from '../components/LoginForm';
+import api from '../services/api';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 
 
@@ -16,6 +17,9 @@ export default function Login(){
     const {setToken,setName } = useContext(UserContext);
     const navigate = useNavigate();
 
+    function setLocalStorage(key,token){
+        localStorage.setItem(key, JSON.stringify(token))
+    }
 
     async function handleLogin(event){
         event.preventDefault();
@@ -25,14 +29,15 @@ export default function Login(){
                 password: userData.password
         };
         try{
-            const res = await axios.post("https://wallet-backend-driven.herokuapp.com/login",body);
+            const res = await api.post("/login",body);
             const {token, name} = res.data;
+            setLocalStorage("access_token",token);
             setToken(token);
             setName(name);
             setEnable(true);
-            navigate("/wallet");
+            navigate("/main");
         }catch(error){
-            alert("Usuario ou senha incorretos");
+            alert("incorrect user or password");
             setEnable(true);
             setUserData({...userData, email:'',
                 password:''
@@ -46,7 +51,7 @@ export default function Login(){
             <LoginForm enable={enable} handleLogin={handleLogin} userData={userData} setUserData={setUserData} />
             <Link to={"/register"} style ={{textDecoration:'none'}}>
                 <h2>
-                    First Time? Register!!
+                    First Time? Register Yourself!!
                 </h2>
             </Link>
         </Container>
