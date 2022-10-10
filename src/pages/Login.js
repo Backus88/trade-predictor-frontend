@@ -30,10 +30,10 @@ export default function Login(){
         };
         try{
             const res = await api.post("/login",body);
-            const {token, name} = res.data;
+            const token = res.data;
+            console.log(res.data)
             setLocalStorage("access_token",token);
             setToken(token);
-            setName(name);
             setEnable(true);
             navigate("/main");
         }catch(error){
