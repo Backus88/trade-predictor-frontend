@@ -19,7 +19,7 @@ export const Form = styled.div `
         border: 1px solid #D5D5D5;
         border-radius: 10px;
         margin-bottom: 13px;
-        font-family: 'Raleway';
+        font-family: 'Playfair Display';
         font-style: normal;
         font-weight: 400;
         font-size: 19.976px;

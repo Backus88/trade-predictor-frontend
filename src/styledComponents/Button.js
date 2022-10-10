@@ -12,5 +12,25 @@ export const Button = styled.button`
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 30px;    
+    margin-bottom: 30px; 
+    cursor: pointer;   
+`
+
+export const LogoutButton = styled(Button)`
+    width: calc(35% - 50px);
+    min-width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    background:#F06B93;
+    :hover{
+        background:#F21457;
+    }
+    margin-bottom: 0px; 
+`
+
+export const PredictionButton = styled(LogoutButton)`
+    background: #6E6AE1;
+    :hover{
+        background:#0000FF;
+    }
 `
